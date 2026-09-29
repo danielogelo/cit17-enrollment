@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Enroll a student by entering their details, course, and year level.">
+  <title>Student Enrollment System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>Student Enrollment System</h1>
+      <p>Fill in the student's details, then select Enroll student.</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="panel" aria-labelledby="form-heading">
+      <h2 id="form-heading">Enrollment form</h2>
+      <p class="hint">Fields marked with <span class="req" aria-hidden="true">*</span><span class="visually-hidden">an asterisk</span> are required.</p>
+
+      <p id="form-status" class="status" role="status" aria-live="polite" hidden></p>
+
+      <form id="enrollment-form" novalidate>
+
+        <fieldset>
+          <legend>Student information</legend>
+
+          <div class="field field-full">
+            <label for="studentId">Student ID <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="studentId" name="studentId" autocomplete="off"
+                   required minlength="5" aria-describedby="studentId-error">
+            <p class="error" id="studentId-error"></p>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="prefix">Prefix</label>
+              <input type="text" id="prefix" name="prefix" placeholder="e.g. Mr."
+                     minlength="2" aria-describedby="prefix-error">
+              <p class="error" id="prefix-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="firstName">First name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="firstName" name="firstName" autocomplete="given-name"
+                     required minlength="3" aria-describedby="firstName-error">
+              <p class="error" id="firstName-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="middleName">Middle name</label>
+              <input type="text" id="middleName" name="middleName" autocomplete="additional-name"
+                     minlength="2" aria-describedby="middleName-error">
+              <p class="error" id="middleName-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="lastName">Last name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="lastName" name="lastName" autocomplete="family-name"
+                     required minlength="2" aria-describedby="lastName-error">
+              <p class="error" id="lastName-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="suffix">Suffix</label>
+              <input type="text" id="suffix" name="suffix" placeholder="e.g. Jr."
+                     minlength="2" aria-describedby="suffix-error">
+              <p class="error" id="suffix-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email"
+                     required aria-describedby="email-error">
+              <p class="error" id="email-error"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Program</legend>
+
+          <div class="grid">
+            <div class="field">
+              <label for="course">Course <span class="req" aria-hidden="true">*</span></label>
+              <select id="course" name="course" required aria-describedby="course-error">
+                <option value="">Select a course</option>
+                <option value="BSIT">BSIT</option>
+                <option value="BSCS">BSCS</option>
+                <option value="BMMA">BMMA</option>
+                <option value="BSAIS">BSAIS</option>
+              </select>
+              <p class="error" id="course-error"></p>
+            </div>
+
+            <div class="field" id="major-field" hidden>
+              <label for="major">Major <span class="req" aria-hidden="true">*</span></label>
+              <select id="major" name="major" aria-describedby="major-error">
+                <option value="">Select a major</option>
+                <option value="Net Sec">Net Sec</option>
+                <option value="Web Tech">Web Tech</option>
+                <option value="ERP">ERP</option>
+              </select>
+              <p class="error" id="major-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="yearLevel">Year level <span class="req" aria-hidden="true">*</span></label>
+              <select id="yearLevel" name="yearLevel" required aria-describedby="yearLevel-error">
+                <option value="">Select a year level</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+              </select>
+              <p class="error" id="yearLevel-error"></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn">Enroll student</button>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="records-heading">
+      <h2 id="records-heading">Enrolled students</h2>
+
+      <div class="table-wrap">
+        <table id="records-table">
+          <caption class="visually-hidden">List of students enrolled in this session</caption>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Student ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Course</th>
+              <th scope="col">Year level</th>
+            </tr>
+          </thead>
+          <tbody id="records-body">
+            <tr class="empty-row">
+              <td colspan="6">No students enrolled yet. Submit the form to add one.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p><small>Student Enrollment System &middot; Records are kept on this page only and clear on refresh.</small></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
